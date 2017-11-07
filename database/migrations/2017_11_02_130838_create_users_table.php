@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->text('address');
             $table->string('image_url')->nullable();
             $table->string('location');
+            $table->enum('account_type', ['user', 'doctor', 'admin'])->default('user');
             $table->timestamps();
         });
     }

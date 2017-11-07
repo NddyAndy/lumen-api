@@ -3,8 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
-class ExampleMiddleware
+class DoctorMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,6 +16,11 @@ class ExampleMiddleware
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if(Auth::user()->account_type == 'doctor')
+        {
+            return $next($request);
+        }
+        
+        return response('Doctors Only pls', 401);
     }
 }
