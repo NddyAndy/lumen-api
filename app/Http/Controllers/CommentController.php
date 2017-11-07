@@ -1,41 +1,40 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
-class ExampleController extends Controller
+use App\Comment;
+use Illuminate\Http\Request;
+
+class CommentController extends Controller
 {
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    // public function __construct()
-    // {
-    //     //
-    // }
-    public function index()
+    public function __construct()
     {
-        
+        $this->middleware('auth:api');
     }
     
-    public function store()
+    public function index()
     {
+       $comment = Comment::all();
 
+       return response()->json(['data' => $comment], 200);
+       
     }
 
-    public function show()
+    public function show($id)
     {
+        $comment = Comment::find($id);
 
-    }
-
-    public function update()
-    {
-
-    }
-
-    public function destroy()
-    {
-
+        if(!$comment) {
+            return response()->json(['data' => 'comment not found'], 400);
+        }else {
+            return response()->json(['data' => $comment], 200);
+        }
     }
     
 }

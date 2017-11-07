@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    use Authenticatable, Authorizable;
 
     /**
      * The attributes that are mass assignable.
@@ -15,13 +14,14 @@ class Comment extends Model
      */
     protected $guarded = [];
 
-    public function posts()
+    public function post()
     {
-        return $this->belongsTo(Post::class);
+        return $this->belongsTo('App\Post');
     }
+
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo('App\User')
     }
 
 }
