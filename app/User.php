@@ -25,7 +25,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     /**
      * The attributes excluded from the model's JSON form.
-     *
+     * https://safe-bastion-81536.herokuapp.com/
+     * https://git.heroku.com/safe-bastion-81536.git
      * @var array
      */
     protected $hidden = [
